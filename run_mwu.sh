@@ -24,6 +24,5 @@ function run()
     if [ $? -ne 0 ]; then echo "# error processing $APIFILE"; fi
 }
 
-
-run "/var/www/ffapi-wiesbaden" "ffapi_wi.json" "/var/www/meshviewer-extern-wi/build/data/nodelist.json"
-run "/var/www/ffapi-mainz" "ffapi_mz.json" "/var/www/meshviewer-extern-mz/build/data/nodelist.json"
+run "/var/www/freifunk.net/api.wiesbaden" "ffapi_wi.json" "https://map.wiesbaden.freifunk.net/data/nodelist.json"
+run "/var/www/freifunk-mainz.de/api" "ffapi_mz.json" "https://map.freifunk-mainz.de/data/nodelist.json"
