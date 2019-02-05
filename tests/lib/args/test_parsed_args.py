@@ -3,7 +3,7 @@ import pytest
 from ffflash.lib.args import parsed_args
 
 F = 'test_ffapi.json'
-N = 'test_nodelist.json'
+N = 'test_nodes.json'
 R = 'test_rankfile.json'
 
 
@@ -72,7 +72,7 @@ def test_parsed_args_valid_options():
         assert a.dry == d
         assert a.verbose == v
 
-    nl = 'http://localhost/nodelist.json'
+    nl = 'http://localhost/nodes.json'
     sc = 'contact services timeline'
     rf = 'rankfile.json'
 

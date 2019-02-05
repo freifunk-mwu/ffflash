@@ -19,7 +19,7 @@ def test_rankfile_load_wrong_location(tmpdir, fffake):
     assert rf.listdir() == []
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'), rankfile=rf, dry=True
+        apifile, nodelist=tmpdir.join('nodes.json'), rankfile=rf, dry=True
     )
     assert ff.access_for('api') is True
     assert ff.access_for('nodelist') is True
@@ -35,7 +35,7 @@ def test_rankfile_load_wrong_extension(tmpdir, fffake, capsys):
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.txt'), dry=True
     )
     assert ff.access_for('api') is True
@@ -57,7 +57,7 @@ def test_rankfile_load_non_existing_file(tmpdir, fffake):
     rf = tmpdir.join('rankfile.json')
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=rf, dry=True
     )
 
@@ -76,7 +76,7 @@ def test_rankfile_load_existing_file_with_errors(tmpdir, fffake, capsys):
     rf.write_text(dumps(None), 'utf-8')
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=rf, dry=True
     )
     assert _rankfile_load(ff) == (False, None)
@@ -90,7 +90,7 @@ def test_rankfile_load_existing_file_with_errors(tmpdir, fffake, capsys):
     rf.write_text(dumps({'a': 'b'}), 'utf-8')
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=rf, dry=True
     )
     assert _rankfile_load(ff) == (False, None)
@@ -111,7 +111,7 @@ def test_rankfile_load_existing_file(tmpdir, fffake):
     rf.write_text(dumps(rankfile), 'utf-8')
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=rf, dry=True
     )
     assert _rankfile_load(ff) == (str(rf), rankfile)

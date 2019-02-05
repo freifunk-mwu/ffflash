@@ -16,7 +16,7 @@ def test_nodelist_fetch_non_existing_nodelist(tmpdir, fffake):
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
 
     for nodelist in [
-        tmpdir.join('nodelist.json'),
+        tmpdir.join('nodes.json'),
         'http://localhost/404/not-found/does/not/exist.json'
     ]:
         ff = fffake(apifile, nodelist=nodelist, dry=True)
@@ -28,7 +28,7 @@ def test_nodelist_fetch_non_existing_nodelist(tmpdir, fffake):
 def test_nodelist_fetch_wrong_format_or_empty(tmpdir, fffake, capsys):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nl = tmpdir.join('nodelist.json')
+    nl = tmpdir.join('nodes.json')
     nl.write_text(dumps(''), 'utf-8')
 
     ff = fffake(apifile, nodelist=nl, dry=True)
@@ -54,7 +54,7 @@ def test_nodelist_fetch(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
     nodelist = {'version': 0, 'nodes': [], 'updated_at': 'never'}
-    nl = tmpdir.join('nodelist.json')
+    nl = tmpdir.join('nodes.json')
     nl.write_text(dumps(nodelist), 'utf-8')
     assert tmpdir.listdir() == [apifile, nl]
 

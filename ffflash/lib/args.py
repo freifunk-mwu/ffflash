@@ -30,6 +30,10 @@ def parsed_args(argv=None):
         help='URL or location to map\'s nodelist.json, updates nodes count'
     )
     parser.add_argument(
+        '-st', '--site', action='store',
+        help='site_code'
+    )
+    parser.add_argument(
         '-r', '--rankfile', action='store',
         help='location to rankfile.json, for node statistics and credits'
     )

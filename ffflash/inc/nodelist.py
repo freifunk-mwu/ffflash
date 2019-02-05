@@ -29,7 +29,7 @@ def _nodelist_fetch(ff):
             level=False
         )
 
-    if not all([(a in nodelist) for a in ['version', 'nodes', 'updated_at']]):
+    if not all([(a in nodelist) for a in ['version', 'nodes', 'timestamp']]):
         return ff.log(
             'this is no nodelist {}'.format(ff.args.nodelist),
             level=False
@@ -50,9 +50,10 @@ def _nodelist_count(ff, nodelist):
     '''
     nodes, clients = 0, 0
     for node in nodelist.get('nodes', []):
-        if node.get('status', {}).get('online', False):
-            nodes += 1
-            clients += node.get('status', {}).get('clients', 0)
+        if node.get('nodeinfo', {}).get('system', {}).get('domain_code') == ff.args.site:
+            if node.get('flags', {}).get('online', False):
+                nodes += 1
+                clients += node.get('statistics', {}).get('clients', 0)
 
     if not all([nodes, clients]):
         ff.log('your nodelist seems to be empty', level=False)

@@ -86,30 +86,31 @@ def _rankfile_score(ff, ranks, nodelist):
         (node.get('id'), node.get('score')) for node in ranks.get('nodes', [])
     )
     for node in nodelist.get('nodes', []):
-        nid = node.get('id')
-        if not nid:
-            ff.log('node without id {}'.format(node))
-            continue
-        nr = {
-            'id': nid,
-            'score': exist.get(nid, ff.args.rankwelcome),
-            'name': node.get('name')
-        }
+        if node.get('nodeinfo', {}).get('system', {}).get('site_code') == ff.args.site:
+            nid = node.get('nodeinfo', {}).get('node_id')
+            if not nid:
+                ff.log('node without id {}'.format(node))
+                continue
+            nr = {
+                'id': nid,
+                'score': exist.get(nid, ff.args.rankwelcome),
+                'name': node.get('nodeinfo', 'hostname')
+            }
 
-        if node.get('position', False):
-            nr['score'] += ff.args.rankposition
-        if node.get('status', {}).get('online', False):
-            nr['score'] += ff.args.rankonline
-            nr['online'] = True
-            cl = node.get('status', {}).get('clients', 0)
-            nr['score'] += (ff.args.rankclients * cl)
-            nr['clients'] = cl
-        else:
-            nr['score'] -= ff.args.rankoffline
-            nr['online'] = False
-            nr['clients'] = 0
-        if nr['score'] > 0:
-            res.append(nr)
+            if node.get('position', False):
+                nr['score'] += ff.args.rankposition
+            if node.get('flags', {}).get('online', False):
+                nr['score'] += ff.args.rankonline
+                nr['online'] = True
+                cl = node.get('statistics', {}).get('clients', 0)
+                nr['score'] += (ff.args.rankclients * cl)
+                nr['clients'] = cl
+            else:
+                nr['score'] -= ff.args.rankoffline
+                nr['online'] = False
+                nr['clients'] = 0
+            if nr['score'] > 0:
+                res.append(nr)
 
     ranks['nodes'] = list(sorted(res, key=itemgetter('score'), reverse=True))
     ff.log('scored {} nodes for rankfile'.format(len(ranks.get('nodes'))))

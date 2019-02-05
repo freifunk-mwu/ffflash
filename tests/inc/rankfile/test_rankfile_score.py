@@ -15,7 +15,7 @@ def test_rankfile_score_wrong_input(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'), dry=True
     )
 
@@ -31,7 +31,7 @@ def test_rankfile_score_nodes_without_id(tmpdir, fffake, capsys):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'), dry=True, verbose=True
     )
 
@@ -49,7 +49,7 @@ def test_rankfile_score_spot_known_nodes(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'), dry=True, verbose=True
     )
 
@@ -78,7 +78,7 @@ def test_rankfile_score_welcome_new_nodes(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'), dry=True, verbose=True
     )
 
@@ -104,7 +104,7 @@ def test_rankfile_score_rank_known_nodes(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'), dry=True, verbose=True
     )
 

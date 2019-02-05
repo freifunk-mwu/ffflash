@@ -14,7 +14,7 @@ def test_nodelist_dump_no_access(tmpdir, fffake):
 def test_nodelist_dump_no_fields_present(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nl = tmpdir.join('nodelist.json')
+    nl = tmpdir.join('nodes.json')
 
     ff = fffake(apifile, nodelist=nl, dry=True)
 
@@ -26,7 +26,7 @@ def test_nodelist_dump_no_fields_present(tmpdir, fffake):
 def test_nodelist_dump_state_nodes_present(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'state': {'nodes': 0}}), 'utf-8')
-    nl = tmpdir.join('nodelist.json')
+    nl = tmpdir.join('nodes.json')
 
     ff = fffake(apifile, nodelist=nl, dry=True)
 
@@ -41,7 +41,7 @@ def test_nodelist_dump_state_description_present_leaves_it(tmpdir, fffake):
     descr = 'test test test'
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'state': {'description': descr}}), 'utf-8')
-    nl = tmpdir.join('nodelist.json')
+    nl = tmpdir.join('nodes.json')
 
     ff = fffake(apifile, nodelist=nl, dry=True)
 
@@ -55,7 +55,7 @@ def test_nodelist_dump_state_description_present_leaves_it(tmpdir, fffake):
 def test_nodelist_dump_state_description_empty_present_fills(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'state': {'description': ''}}), 'utf-8')
-    nl = tmpdir.join('nodelist.json')
+    nl = tmpdir.join('nodes.json')
 
     ff = fffake(apifile, nodelist=nl, dry=True)
 

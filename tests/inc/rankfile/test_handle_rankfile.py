@@ -14,7 +14,7 @@ def test_handle_rankfile_without_nodelist(tmpdir, fffake):
 def test_handle_rankfile_without_rankfile(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(dumps({'a': 'b'}), 'utf-8')
 
     ff = fffake(apifile, nodelist=nodelist, dry=True)
@@ -28,7 +28,7 @@ def test_handle_rankfile_without_rankfile(tmpdir, fffake):
 def test_handle_rankfile_empty_nodelist(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(dumps({'a': 'b'}), 'utf-8')
 
     ff = fffake(
@@ -47,7 +47,7 @@ def test_handle_rankfile_empty_nodelist(tmpdir, fffake):
 def test_handle_rankfile_trashy_rankfile(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(dumps({'a': 'b'}), 'utf-8')
     rankfile = tmpdir.join('rankfile.json')
     rankfile.write_text(dumps({'a': 'b'}), 'utf-8')
@@ -65,7 +65,7 @@ def test_handle_rankfile_trashy_rankfile(tmpdir, fffake):
 def test_handle_rankfile_trashy_nodelist(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(dumps({'a': 'b'}), 'utf-8')
     rankfile = tmpdir.join('rankfile.json')
     rankfile.write_text(dumps({'nodes': [], 'updated_at': 'now'}), 'utf-8')

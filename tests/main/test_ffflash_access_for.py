@@ -4,7 +4,7 @@ from json import dumps
 def test_ffflash_access_for_with_empty_paths(tmpdir, fffake):
     f = fffake(
         tmpdir.join('api_file.json'),
-        nodelist=tmpdir.join('nodelist.json'),
+        nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'),
         sidecars=[tmpdir.join('side.yaml'), tmpdir.join('cars.yaml')]
     )
@@ -21,7 +21,7 @@ def test_ffflash_access_for_with_empty_paths(tmpdir, fffake):
 def test_ffflash_access_for_with_correct_paths(tmpdir, fffake):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(dumps({'a': 'b'}), 'utf-8')
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(dumps({'a': 'b'}), 'utf-8')
 
     assert tmpdir.listdir() == [apifile, nodelist]

@@ -35,7 +35,7 @@ def test_run_apifile_not_modified(tmpdir):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(j_dump(c), 'utf-8')
 
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(j_dump({
         'will': {'not': {'be': 'recognized'}}
     }), 'utf-8')
@@ -57,9 +57,9 @@ def test_run_apifile_modified(tmpdir):
     apifile = tmpdir.join('api_file.json')
     apifile.write_text(j_dump(c), 'utf-8')
 
-    nodelist = tmpdir.join('nodelist.json')
+    nodelist = tmpdir.join('nodes.json')
     nodelist.write_text(j_dump({
-        'version': 1,
+        'version': 2,
         'nodes': [
             {'status': {'clients': 23, 'online': True}},
             {'status': {'clients': 42, 'online': False}}

@@ -19,7 +19,7 @@ def test_rankfile_dump_wrong_input(tmpdir, fffake):
     rf = tmpdir.join('rankfile.json')
 
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=tmpdir.join('rankfile.json'), dry=True
     )
 
@@ -40,7 +40,7 @@ def test_rankfile_dump_with_dry_option(tmpdir, fffake, capsys):
 
     assert tmpdir.listdir() == [apifile]
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=rf, dry=True
     )
 
@@ -63,7 +63,7 @@ def test_rankfile_dump_data(tmpdir, fffake):
 
     assert tmpdir.listdir() == [apifile]
     ff = fffake(
-        apifile, nodelist=tmpdir.join('nodelist.json'),
+        apifile, nodelist=tmpdir.join('nodes.json'),
         rankfile=rf
     )
 
